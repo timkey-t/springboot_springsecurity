@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thmeleaf.org/thymeleaf-extras-springsecurity">
+<head>
+    <meta charset="UTF-8">
+    <title>Spring Security 入门</title>
+</head>
+<body>
+    <h1>欢迎使用Spring Security
+         当前的登陆账号是：<label th:text="${name}"></label>
+    </h1>
+    <p>点击<a th:href="@{/hello}">这里</a>打个招呼</p>
+
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="退出登录"/>
+    </form>
+
+    <p><a th:href="@{/hello/helloAdmin}">admin Page</a></p>
+    <p><a th:href="@{/hello/helloUser}">user Page</a></p>
+</body>
+</html>
