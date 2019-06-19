@@ -30,7 +30,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/", "/index").permitAll()
                 //.antMatchers("/resource/**","/test/**").permitAll()
                 //.antMatchers("resource/**/*.{js.html}").permitAll()//允许/resource下.js和.html文件可以直接访问
-                .anyRequest().access("@authService.canAccess(request,authentication)");//
+                .anyRequest().access("@authService.canAccess(request,authentication)")
+                .and().sessionManagement().maximumSessions(1)//只能登陆一个
+                ;
                 //.anyRequest().authenticated();
 
         //自定义过滤器
