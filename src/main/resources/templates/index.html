@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thmeleaf.org/thymeleaf-extras-springsecurity">
+      xmlns:sec="http://org.thymeleaf.extras/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
     <title>Spring Security 入门</title>
@@ -14,6 +14,9 @@
     <form th:action="@{/logout}" method="post">
         <input type="submit" value="退出登录"/>
     </form>
+
+    <!--<p sec:authorize="hasRole('ADMIN')"><a th:href="@{/hello/helloAdmin}">admin Page</a></p>
+    <p sec:authorize="hasAnyRole('ADMIN','NORMAL')"><a th:href="@{/hello/helloUser}">user Page</a></p>-->
 
     <p><a th:href="@{/hello/helloAdmin}">admin Page</a></p>
     <p><a th:href="@{/hello/helloUser}">user Page</a></p>

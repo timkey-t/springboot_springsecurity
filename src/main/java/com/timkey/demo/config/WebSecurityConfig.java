@@ -26,19 +26,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.formLogin().loginPage("/login")
                 .and()
                 .authorizeRequests()
-                //.anyRequest().authenticated()
                 .antMatchers("/login").permitAll()
-                .antMatchers("/","/index").permitAll()
+                .antMatchers("/", "/index").permitAll()
                 //.antMatchers("/resource/**","/test/**").permitAll()
                 //.antMatchers("resource/**/*.{js.html}").permitAll()//允许/resource下.js和.html文件可以直接访问
-                .anyRequest().authenticated();
-        http.addFilterBefore(new BeforeLoginFilter(), UsernamePasswordAuthenticationFilter.class);
-        http.addFilterAfter(new AfterLoginFilter(), UsernamePasswordAuthenticationFilter.class);
+                .anyRequest().access("@authService.canAccess(request,authentication)");//
+                //.anyRequest().authenticated();
+
+        //自定义过滤器
+        /*http.addFilterBefore(new BeforeLoginFilter(), UsernamePasswordAuthenticationFilter.class);
+        http.addFilterAfter(new AfterLoginFilter(), UsernamePasswordAuthenticationFilter.class);*/
 
     }
 
     /**
      * 通过覆写configure方法，进行创建用户
+     *
      * @param auth
      * @return void
      * @author tangfeng
@@ -58,7 +61,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     }*/
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 }

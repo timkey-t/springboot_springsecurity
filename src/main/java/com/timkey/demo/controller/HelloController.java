@@ -22,13 +22,13 @@ public class HelloController {
     }
 
     @GetMapping("/helloAdmin")
-    @PreAuthorize("hasAnyRole('ADMIN')")
+    //@PreAuthorize("hasAnyRole('ADMIN')")
     public String helloAdmin(){
         return "Hello,Admin";
     }
 
     @GetMapping("/helloUser")
-    @PreAuthorize("hasAnyRole('NORMAL','ADMIN')")
+    //@PreAuthorize("hasAnyRole('NORMAL','ADMIN')")
     public String helloUser(){
         return "Hello,user";
     }
